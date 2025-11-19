@@ -63,8 +63,6 @@ body * {
   position: relative;
   width: 64px;
   margin: 4px auto;
-  /* Adicionei altura para o contexto */
-  height: 40px;
 }
 
 #switch button {
@@ -74,20 +72,23 @@ body * {
   background: white var(--switch-bg-url) no-repeat center;
   border: 0;
   border-radius: 50%;
-  cursor: pointer;
 
   position: absolute;
   top: 50%;
   left: 0;
   z-index: 1;
   transform: translateY(-50%);
-
   transition: all 0.4s;
+
+  animation: slide-back 0.2s;
 }
 
 .light #switch button {
-  right: 0;
-  left: initial;
+  animation: slide-in 0.4s forwards;
+}
+
+#switch button:hover {
+  outline: 8px solid var(--highlight-color);
 }
 
 #switch span {
@@ -168,5 +169,23 @@ footer {
 
   .light {
     --bg-rel: url(.assets/bg-desktop.light.jpg);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    left: 0;
+  }
+  to {
+    left: 50%;
+  }
+}
+
+@keyframes slide-back {
+  from {
+    left: 50%;
+  }
+  to {
+    left: 0;
   }
 }
